@@ -33,6 +33,8 @@ Route::prefix("categories")->group(function (){
     Route::get('/{id}/detail',[CategoryController::class,"show"])->name("category.detail");
     Route::get('/create',[CategoryController::class,"create"])->name("category.create");
     Route::post('/create',[CategoryController::class,"store"])->name("category.store");
+    Route::get('/{id}/update',[CategoryController::class,"edit"])->name("category.edit");
+    Route::post('/{id}/update',[CategoryController::class,"update"])->name("category.update");
     Route::get('/{id}/delete',[CategoryController::class,"destroy"])->name("category.destroy");
 });
 

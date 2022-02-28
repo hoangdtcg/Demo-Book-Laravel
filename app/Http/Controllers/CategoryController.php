@@ -35,12 +35,15 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        //
+        $category = DB::table("categories")->where("id",$id)->first();
+        return view('category.update', compact(['id','category']));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only('name','content');
+        $update = DB::table('categories')->where("id",$id)->update($data);
+        return redirect()->route('category.index');
     }
 
     public function destroy($id)
