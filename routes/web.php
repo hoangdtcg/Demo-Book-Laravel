@@ -20,14 +20,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', function () {
     return view('welcome');
 });
-
-Route::prefix("books")->group(function (){
-    Route::get('/',[BookController::class,"index"])->name("book.index");
-    Route::get('/{id}/detail',[BookController::class,"show"])->name("book.detail");
-    Route::get('/create',[BookController::class,"create"])->name("book.create");
-    Route::post('/create',[BookController::class,"store"])->name("book.store");
-    Route::get('{id}/delete',[BookController::class,"destroy"])->name("book.destroy");
+Route::middleware('checkAuth')->group(function (){
+    Route::prefix("books")->group(function (){
+        Route::get('/',[BookController::class,"index"])->name("book.index");
+        Route::get('/{id}/detail',[BookController::class,"show"])->name("book.detail");
+        Route::get('/create',[BookController::class,"create"])->name("book.create");
+        Route::post('/create',[BookController::class,"store"])->name("book.store");
+        Route::get('{id}/delete',[BookController::class,"destroy"])->name("book.destroy");
+    });
+    Route::resource('categories', CategoryController::class);
 });
+
 
 //Route::prefix("categories")->group(function (){
 //    Route::get('/',[CategoryController::class,"index"])->name("categories.index");
@@ -39,7 +42,6 @@ Route::prefix("books")->group(function (){
 //    Route::get('/{id}/delete',[CategoryController::class,"destroy"])->name("categories.destroy");
 //});
 
-Route::resource('categories', CategoryController::class);
 
 Route::get('register',[AuthController::class,"showForm"])->name("showFormRegister");
 Route::post('register',[AuthController::class,"register"])->name("register")->middleware('checkRegister');
@@ -47,3 +49,4 @@ Route::post('register',[AuthController::class,"register"])->name("register")->mi
 
 Route::get('login',[AuthController::class,"showFormLogin"])->name("showFormLogin");
 Route::post('login',[AuthController::class,"login"])->name("login");
+Route::get('logout',[AuthController::class,"logout"])->name("logout");

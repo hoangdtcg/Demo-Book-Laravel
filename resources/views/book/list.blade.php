@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<a href="{{route('logout')}}">Logout</a>
 <body>
     <table>
         <thead>

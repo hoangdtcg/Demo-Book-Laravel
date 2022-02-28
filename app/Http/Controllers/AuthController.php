@@ -37,12 +37,18 @@ class AuthController extends Controller
         //dung attemp de check user co hay k
         if(Auth::attempt($user)){
 //            dd("Dang nhap thanh cong");
-            return redirect()->route('books.index');
+            return redirect()->route('book.index');
         }else{
             Session::flash('msg','Tai khoan khong dung');
 //            dd("Dang nhap that bai");
             return redirect()->back();
         }
 
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
