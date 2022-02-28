@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $data = $request->only('name','content');
         DB::table("categories")->insert($data);
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
 
@@ -43,12 +43,12 @@ class CategoryController extends Controller
     {
         $data = $request->only('name','content');
         $update = DB::table('categories')->where("id",$id)->update($data);
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
     public function destroy($id)
     {
         DB::table("categories")->delete($id);
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 }

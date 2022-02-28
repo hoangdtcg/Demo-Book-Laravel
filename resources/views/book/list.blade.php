@@ -27,6 +27,7 @@
                 <td>{{$book->price}}</td>
                 <td><a href="{{route('book.detail',$book->id)}}">Detail</a></td>
                 <td><a onclick="return confirm('Are you sure you want to delete this book?')" href="{{route('book.destroy',$book->id)}}">Delete</a></td>
+
             </tr>
         @endforeach
         </tbody>

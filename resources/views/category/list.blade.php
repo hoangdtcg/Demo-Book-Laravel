@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<a href="{{route('category.create')}}">Create</a>
+<a href="{{route('categories.create')}}">Create</a>
     <table>
         <thead>
         <tr>
@@ -22,9 +22,17 @@
             <tr>
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
-                <td><a href="{{route('category.detail',$category->id)}}">Detail</a></td>
-                <td><a href="{{route('category.edit',$category->id)}}">Update</a></td>
-                <td><a onclick="return confirm('Are you sure you want to delete this category?')" href="{{route('category.destroy',$category->id)}}">Delete</a></td>
+                <td><a href="{{route('categories.show',$category->id)}}">Detail</a></td>
+                <td><a href="{{route('categories.edit',$category->id)}}">Update</a></td>
+{{--                <td><a onclick="return confirm('Are you sure you want to delete this category?')" href="{{route('categories.destroy',$category->id)}}" data-method="delete">Delete</a></td>--}}
+                <td>
+                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                        @csrf
+{{--                        @method('DELETE')--}}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button onclick="return confirm('Are you sure you want to delete this category?')" class="btn btn-danger btn-sm" title="Delete">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

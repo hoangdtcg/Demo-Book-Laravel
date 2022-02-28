@@ -8,9 +8,11 @@
     <title>Update Category</title>
 </head>
 <body>
-<form action="{{route('category.update',$category->id)}}" method="post">
+<form action="{{route('categories.update',$category->id)}}" method="POST">
         @csrf
 {{--    {{csrf_token()}}--}}
+{{--    Hidden method de update va delete--}}
+    <input type="hidden" name="_method" value="PUT">
     <input type="text" name="name" placeholder="Name" value="{{ $category->name }}">
     <input type="text" name="content" placeholder="Content" value="{{ $category->content }}">
     <button>Update</button>
