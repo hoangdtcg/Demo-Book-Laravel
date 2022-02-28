@@ -21,10 +21,11 @@ Route::get('/home', function () {
 });
 
 Route::prefix("books")->group(function (){
-    Route::get('/',[BookController::class,"showAll"])->name("book.list");
+    Route::get('/',[BookController::class,"index"])->name("book.index");
     Route::get('/{id}/detail',[BookController::class,"show"])->name("book.detail");
     Route::get('/create',[BookController::class,"create"])->name("book.create");
     Route::post('/create',[BookController::class,"store"])->name("book.store");
+    Route::get('{id}/delete',[BookController::class,"destroy"])->name("book.destroy");
 });
 
 Route::prefix("categories")->group(function (){

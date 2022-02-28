@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     //
-    public function showAll()
+    public function index()
     {
         $books = DB::table("books")->get(); //query builder
         return view('book.list',compact('books'));
@@ -23,5 +23,12 @@ class BookController extends Controller
     public function create()
     {
         return view('book.create');
+    }
+
+    public function destroy($id)
+    {
+        DB::table("books")->where("id",$id)->delete();
+        return redirect()->route("book.index");
+//        DB::table("books")->delete($id);
     }
 }

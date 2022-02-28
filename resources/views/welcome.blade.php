@@ -1,1 +1,1 @@
-<a href="{{ route('book.list')}}">Book List</a>
+<a href="{{ route('book.index')}}">Book List</a>
