@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\DB;
@@ -40,4 +41,9 @@ Route::prefix("books")->group(function (){
 
 Route::resource('categories', CategoryController::class);
 
+Route::get('register',[AuthController::class,"showForm"])->name("showFormRegister");
+Route::post('register',[AuthController::class,"register"])->name("register")->middleware('checkRegister');
 
+
+Route::get('login',[AuthController::class,"showFormLogin"])->name("showFormLogin");
+Route::post('login',[AuthController::class,"login"])->name("login");
