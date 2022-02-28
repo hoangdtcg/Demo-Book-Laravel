@@ -23,6 +23,7 @@
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
                 <td><a href="{{route('category.detail',$category->id)}}">Detail</a></td>
+                <td><a onclick="return confirm('Are you sure you want to delete this category?')" href="{{route('category.destroy',$category->id)}}">Delete</a></td>
             </tr>
         @endforeach
         </tbody>

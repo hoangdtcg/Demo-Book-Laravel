@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $data = $request->only('name','content');
         DB::table("categories")->insert($data);
-        return redirect()->route('category.list');
+        return redirect()->route('category.index');
     }
 
 
@@ -45,6 +45,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        //
+        DB::table("categories")->delete($id);
+        return redirect()->route('category.index');
     }
 }
